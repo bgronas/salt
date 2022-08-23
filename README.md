@@ -1,1 +1,18 @@
-23.08.2022 13:42:12,50 BENGT005
+---
+author: "Bengt Grønås"
+title: "README - SALTSTACK REPOSITORY!"
+description: "salststack repository Bengt Grønås"
+categories:
+  - VMware
+tags:
+  - vRealize Automation
+  - Saltstack
+---
+
+#README#
+##2022##
+
+
+
+
+
