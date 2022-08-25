@@ -1,0 +1,7 @@
+# Orchestrator to react on index.php file changes
+
+fix_index_file:
+  local.state.apply:
+    - tgt: {{ data['id'] }}
+    - arg: 
+      - applications.apache.index-file

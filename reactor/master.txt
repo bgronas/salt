@@ -1,0 +1,13 @@
+push_reactor_to_master:
+  file.managed:
+    - name: /etc/salt/master.d/reactor.conf
+    - source: salt://reactors/master/reactor.conf
+    - makedirs: True
+
+restart_master_service:
+  service.running:
+    - name: salt-master
+    - watch:
+      - file: push_reactor_to_master
+
+ 

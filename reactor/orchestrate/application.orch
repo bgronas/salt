@@ -1,0 +1,8 @@
+# Orchestrate Application Install
+# used in /reactor/master/reactor.conf to
+
+install_applications:
+  local.state.apply:
+    - tgt: {{ data['id'] }}
+    - arg:
+      - applications.{{ data['data']['orchestrate'] }}

@@ -1,0 +1,16 @@
+Debian:
+  name: apache2
+  httpfile: /etc/apache2/apache2.conf
+  source_httpfile: salt://apache/files/apache2.conf
+  http_port: 8080
+  user: www-data
+  group: www-data
+  admin_email: user@host.org
+RedHat:
+  name: httpd
+  httpfile: /etc/httpd/conf/httpd.conf
+  source_httpfile: salt://apache/files/httpd.conf
+  http_port: 80
+  user: apache
+  group: apache
+  admin_email: user@host.org

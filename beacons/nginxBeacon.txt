@@ -1,0 +1,8 @@
+nginx_beacon:
+  beacon.present:
+    - name: service
+    - save: True
+    - services:
+        nginx:
+          onchangeonly: True
+  

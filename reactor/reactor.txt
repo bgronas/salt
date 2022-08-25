@@ -1,0 +1,10 @@
+reactor:
+
+  - 'salt/auth':
+    - salt://reactors/states/edu-acceptKey.sls?saltenv=edu
+    
+  - 'salt/beacon/*/service/nginx':
+    - salt://reactors/states/edu-restartNginx.sls?saltenv=edu
+    
+  - 'salt/beacon/*/inotify//var/www/demo/index.html':
+    - salt://reactors/states/edu-webHtmlFix.sls?saltenv=edu

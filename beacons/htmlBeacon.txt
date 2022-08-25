@@ -1,0 +1,19 @@
+inotify_install:
+  pkg.installed:
+    - name: python3-pyinotify
+
+html_beacon:
+  beacon.present:
+    - name: inotify
+    - save: True
+    - enable: True
+    - disable_during_state_run: True
+    - files:
+       /var/www/demo/index.html:
+         mask:
+           - create
+           - delete
+           - modify
+    - require:
+      - pkg: inotify_install
+      

@@ -1,0 +1,9 @@
+reactor:
+  - 'salt/auth': 
+    - salt://reactors/states/2tier-acceptKey.sls?saltenv=vmlab
+	
+reactor:
+  - 'salt/beacon/*/inotify//etc/ssh/sshd_config':
+    - salt://reactors/ubuntu/sshdReactor.sls?saltenv=vmlab
+	
+	

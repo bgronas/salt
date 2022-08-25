@@ -1,0 +1,30 @@
+######################################################
+# Name: Linux_Users.sls
+#
+# Description: Create users on linux systems
+#
+# usage:
+# salt state.sls linux_users
+#
+######################################################
+# Create users
+# 
+###################################################### 
+user1:
+  user.present:
+    - name: {{ pillar['Linux_Users']['user1']['name'] }}
+    - uid: {{ pillar['Linux_Users']['user1']['UID'] }}
+    - home: {{ pillar['Linux_Users']['user1']['home'] }}
+    - createhome: True
+    - shell: {{ pillar['Linux_Users']['user1']['shell'] }}
+    - password: {{ pillar['Linux_Users']['user1']['password'] }}
+    - hash_password: True
+user2:
+  user.present:
+    - name: {{ pillar['Linux_Users']['user2']['name'] }}
+    - uid: {{ pillar['Linux_Users']['user2']['UID'] }}
+    - home: {{ pillar['Linux_Users']['user2']['home'] }}
+    - createhome: True
+    - shell: {{ pillar['Linux_Users']['user2']['shell'] }}
+    - password: {{ pillar['Linux_Users']['user2']['password'] }}
+    - hash_password: True
