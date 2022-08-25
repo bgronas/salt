@@ -1,4 +1,4 @@
-path: C:\iberia_lab
+path: C:\bgronas
 user: Administrator
 group: na
 mode: na

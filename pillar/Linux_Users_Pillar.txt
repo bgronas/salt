@@ -1,16 +1,16 @@
 {
     "Linux_Users": {
         "user1": {
-            "name": "vmuser1",
+            "name": "user1",
             "UID": "2000",
-            "password": "VMware1",
+            "password": "VMware1!",
             "shell": "/bin/bash",
             "home": "/users/vmuser1"
         },
         "user2": {
-            "name": "vmuser2",
+            "name": "user2",
             "UID": "2001",
-            "password": "VMware2",
+            "password": "VMware1!",
             "shell": "/bin/bash",
             "home": "/users/vmuser2"
         }

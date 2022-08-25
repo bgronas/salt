@@ -1,4 +1,4 @@
-path: /opt/iberia_lab
-user: seiberia
-group: seiberia
+path: /opt/bgronas_lab
+user: bgronas
+group: bgronas
 mode: 755
