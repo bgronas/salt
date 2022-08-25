@@ -1,6 +1,6 @@
 formatVersion: 1
-name: CMBU-EPIC-Demo-Template
-version: 1.0.1
+name: SockShop
+version: 2.0.1
 inputs:
   user:
     type: string
@@ -18,6 +18,7 @@ inputs:
       - 1
       - 2
       - 3
+      - 9
 resources:
   Cloud_SaltStack_1:
     type: Cloud.SaltStack
@@ -96,11 +97,11 @@ resources:
       remoteAccess:
         authentication: usernamePassword
         username: root
-        password: ${secret.SockshopLabPassword}
+        password: ${secret.rootpassword}
       networks:
         - network: ${resource.Cloud_Network_1.id}
       constraints:
-        - tag: cloud:vcf
+        - tag: cloud:oslo
   Web-Server:
     type: Cloud.Machine
     dependsOn:
@@ -112,7 +113,7 @@ resources:
     properties:
       prefix: sockshop-app #Extensibility -> Subscriptions!
       image: linux-ubuntu-18.04
-      flavor: medium
+      flavor: small
       newName: ${self.resourceName}
       cloudConfig: |
         #cloud-config
@@ -130,13 +131,13 @@ resources:
       remoteAccess:
         authentication: usernamePassword
         username: root
-        password: ${secret.SockshopLabPassword}
+        password: ${secret.rootpassword}
       networks:
         - network: ${resource.Cloud_Network_1.id}
           securityGroups:
             - ${resource.Cloud_SecurityGroup_1.id}
       constraints:
-        - tag: cloud:vcf
+        - tag: cloud:oslo
       count: ${input.count}
       tags:
         - key: SLA
@@ -156,7 +157,7 @@ resources:
     properties:
       prefix: sockshop-db
       image: linux-ubuntu-18.04
-      flavor: medium
+      flavor: small
       newName: ${self.resourceName}
       cloudConfig: |
         #cloud-config
@@ -167,20 +168,12 @@ resources:
             sudo: ['ALL=(ALL) NOPASSWD:ALL']
             groups: sudo
             shell: /bin/bash
-            
         runcmd:
           - echo $USER:$PASS | /usr/sbin/chpasswd
-            
       remoteAccess:
         authentication: usernamePassword
         username: root
-        password: ${secret.SockshopLabPassword}
-      networks:
-        - network: ${resource.Cloud_Network_2.id}
-          securityGroups:
-            - ${resource.Cloud_SecurityGroup_2.id}
-      constraints:
-        - tag: cloud:vcf
+        password: ${secret.rootpassword}
       tags:
         - key: SLA
           value: gold
@@ -190,47 +183,3 @@ resources:
           value: sockshop
         - key: type
           value: dbserver
-      cloudConfigSettings: null
-  Cloud_NSX_LoadBalancer_1:
-    type: Cloud.NSX.LoadBalancer
-    metadata:
-      layoutPosition:
-        - 3
-        - 2
-    properties:
-      routes:
-        - protocol: HTTP
-          port: 80
-          instancePort: 80
-          instanceProtocol: HTTP
-          algorithm: ROUND_ROBIN
-          healthCheckConfiguration:
-            protocol: HTTP
-            port: 80
-            urlPath: /index.php
-            intervalSeconds: 5
-            timeoutSeconds: 10
-            unhealthyThreshold: 3
-            healthyThreshold: 2
-      instances: ${resource.Web-Server[*].id}
-      network: ${resource.Cloud_Network_1.id}
-  Cloud_Network_1:
-    type: Cloud.vSphere.Network
-    metadata:
-      layoutPosition:
-        - 4
-        - 0
-    properties:
-      networkType: existing
-      constraints:
-        - tag: net:the-sockshop-app01
-  Cloud_Network_2:
-    type: Cloud.vSphere.Network
-    metadata:
-      layoutPosition:
-        - 5
-        - 0
-    properties:
-      networkType: existing
-      constraints:
-        - tag: net:the-sockshop-db01
