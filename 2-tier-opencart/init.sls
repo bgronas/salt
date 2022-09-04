@@ -54,15 +54,15 @@ install_pyinotify:
     - onlyif: 'test ! -e /var/www/opencart'
 
 # Create Beacon to Protect Index.php
-deploy_beacon_file:
-  file.managed:
-    - name: /etc/salt/minion.d/beacons.conf
-    - source: salt://opencart/files/beacons.conf
-    - makedirs: True
+#deploy_beacon_file:
+#  file.managed:
+#    - name: /etc/salt/minion.d/beacons.conf
+#    - source: salt://opencart/files/beacons.conf
+#    - makedirs: True
 
-restart_minion:
-  cmd.run:
-    - name: service salt-minion restart
-    - bg: True
-    - onchanges:
-      - file: deploy_beacon_file
+#restart_minion:
+#  cmd.run:
+#    - name: service salt-minion restart
+#    - bg: True
+#    - onchanges:
+#      - file: deploy_beacon_file
