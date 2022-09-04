@@ -16,7 +16,7 @@ base:
     - rdp
     - patch
 
-linuxrole:Docker:
+role:Docker:
     - match: grain
     - docker
 

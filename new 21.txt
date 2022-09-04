@@ -1,0 +1,3 @@
+https://www.funkycloudmedina.com/2022/06/how-to-install-vrealize-operations-telegraf-agent-using-vrealize-automation-and-saltstack-config/
+
+https://nine30.info/blog/
